@@ -1,9 +1,6 @@
 %   Finding the worst case condition number for uncoded matrix-matrix scheme
-%   We have n workers and s = c*ell - beta stragglers.
+%   We have n workers and s = c*ell - 1 stragglers.
 %   ell = ellA * ellB is the number of assigned blocks in each worker.
-%   Worst condition number depends on the random matrices random_matA and random_matB.
-%   Different simulations may provide different worst case condition
-%   numbers and different worst choice of workers.
 
 clc
 close all

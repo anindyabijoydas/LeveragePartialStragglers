@@ -1,9 +1,6 @@
 %   Finding the worst case condition number for uncoded matrix-vector scheme
 %   We have n workers and s = c*ell - 1 stragglers.
 %   Storage fraction gamma = a1/a2.
-%   Worst case condition number depends on the random matrix random_mat.
-%   Different simulations may provide different worst case condition
-%   numbers and different worst choice of workers.
 
 clc
 close all
