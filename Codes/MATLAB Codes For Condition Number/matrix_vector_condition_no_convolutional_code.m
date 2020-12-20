@@ -17,6 +17,10 @@
 %   One can increase no_trials, which can help to find a better condition 
 %   number. One may not always get the exact same value.
 %
+%   This code uses the approach of the following paper-
+%
+%   Anindya Bijoy Das, Aditya Ramamoorthy, and Namrata Vaswani, "Efficient and Robust 
+%   Distributed Matrix Computations via Convolutional Coding," arXiv:1907.08064 (2019).
 
 clc
 close all
