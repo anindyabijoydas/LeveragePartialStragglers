@@ -109,17 +109,14 @@ if rank == 0:
         computation_time_dense[i] = comm.recv(source=i+1);
         computation_time_sparse[i] = comm.recv(source=i+1);
 
-
     for i in range (0,n):
         print("Computation time (using sparse method) for processor %s is %s" %(i,computation_time_sparse[i]))
-
 
     print('\n')
 
     for i in range (0,n):
         print("Computation time (using regular method) for processor %s is %s" %(i,computation_time_dense[i]))
         
-
     comm.Abort()
 
 else:
