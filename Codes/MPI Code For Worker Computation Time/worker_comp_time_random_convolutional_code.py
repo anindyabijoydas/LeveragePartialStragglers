@@ -3,7 +3,7 @@ import numpy as np
 import itertools as it
 import time
 from scipy.sparse import csr_matrix
-from scipy.sparse import rand,vstack
+from scipy.sparse import rand,vstack,hstack
 from scipy.linalg import eigvals
 from mpi4py import MPI
 import sys
@@ -102,9 +102,9 @@ if rank == 0:
         DeltaB = DeltaB+1 ;
     qB = int(DeltaB/kB) ;
     print("The value of DeltaB is %s" %(DeltaB))
-    r = 15000 ;
-    t = 12000 ;
-    w = 13500 ;
+    r = 1500 ;
+    t = 1200 ;
+    w = 1350 ;
 
     A = rand(t, r, density=0.02, format="csr")
     B = rand(t, w, density=0.02, format="csr")
@@ -204,37 +204,23 @@ else:
     WsendB = comm.recv(source=0)
     lengB = comm.recv(source=0)
 
-    WsendAt = {};
-    for j in range (0,lengA):
-        WsendAt[j] = np.transpose(WsendA[j])
+    Ai =  np.hstack(WsendA[j] for j in range(0,lengA))    
+    Bi =  np.hstack(WsendB[j] for j in range(0,lengB))    
+    Ait = np.transpose(Ai)
 
-    Wab = {};
-    ind = 0;
     start_time = time.time()
-    for j in range (0,lengA):
-        for m in range (0,lengB):
-            Wab[ind] = WsendAt[j] * WsendB[m];
-            ind = ind + 1;
+    Wab = Ait * Bi;						# Ait and Bi are dense 
     end_time = time.time();
     comp_time_dense = end_time - start_time;
     comm.send(comp_time_dense, dest=0)
 
-    WsendAsp = {};
-    WsendBsp = {};
-    for j in range (0,lengA):
-        WsendAsp[j] = csr_matrix(WsendAt[j])
-    for m in range (0,lengB):
-        WsendBsp[m] = csr_matrix(WsendB[m]);
-
-    Wab = {};
-    ind = 0;
+    Ait = csr_matrix(Ait)							
+    Bi = csr_matrix(Bi)
     start_time = time.time()
-    for j in range (0,lengA):
-        for m in range (0,lengB):
-            Wab[ind] = WsendAsp[j] * WsendBsp[m];
-            ind = ind + 1;
+    Wab = Ait * Bi;						# Ait and Bi are sparse
     end_time = time.time();
     comp_time_sparse = end_time - start_time;
     comm.send(comp_time_sparse, dest=0)
+        
 
 
