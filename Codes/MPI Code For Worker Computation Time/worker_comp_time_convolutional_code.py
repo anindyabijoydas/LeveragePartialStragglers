@@ -1,3 +1,14 @@
+"""
+Having matrices A and B of size (t,r) and (t,w), respectively.
+Finding the worst case error percentage for our proposed scheme to get A' times B
+We have n workers, s = n - kA*kB stragglers.
+Storage fraction gammaA > 1/kA and gammaB > 1/kB.
+Matrix A is divided into DeltaA block columns, where kA divides DeltaA.
+Matrix B is divided into DeltaB block columns, where kB divides DeltaB.
+This code uses the approach of the following paper-
+Anindya Bijoy Das, Aditya Ramamoorthy, and Namrata Vaswani. "Efficient and Robust Distributed Matrix Computations via Convolutional Coding." arXiv preprint arXiv:1907.08064 (2019).
+"""
+
 from __future__ import division
 import numpy as np
 import itertools as it
@@ -102,9 +113,9 @@ if rank == 0:
         DeltaB = DeltaB+1 ;
     qB = int(DeltaB/kB) ;
     print("The value of DeltaB is %s" %(DeltaB))
-    r = 1500 ;
-    t = 1200 ;
-    w = 1350 ;
+    r = 15000 ;
+    t = 12000 ;
+    w = 13500 ;
 
     A = rand(t, r, density=0.02, format="csr")
     B = rand(t, w, density=0.02, format="csr")
@@ -118,12 +129,6 @@ if rank == 0:
     #no_trials = 0;              # One can comment out these two lines to find good choices of coefficients
     #(R_A,R_B,best_cond_min) = matrix_matrix_best_mat(n,kA,kB,gammaB,no_trials);
     
-    if worst_case !=1:
-        all_workers = np.random.permutation(n);
-        active_workers = all_workers[0:k];
-        active_workers.sort() ;
-        print("\nActive Workers are %s"%(active_workers))
-
     aa = int(r/DeltaA);
     Wa = {};
     for i in range (0,DeltaA):
