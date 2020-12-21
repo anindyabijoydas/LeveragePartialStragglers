@@ -1,3 +1,11 @@
+"""
+Finding the worker computation time for the proposed optimal scheme
+Having two random matrices A and B
+We have n workers and s = n - kA * kB stragglers.
+Storage fraction gammaA = 1/kA and gammaB = 1/kB.
+Matrices A and B are partitioned into kA and kB block columns.
+ellAu and ellAc are number of uncoded and coded blocks
+"""
 
 from __future__ import division
 import numpy as np
