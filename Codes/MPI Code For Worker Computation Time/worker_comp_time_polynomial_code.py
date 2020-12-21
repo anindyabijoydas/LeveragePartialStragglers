@@ -2,8 +2,8 @@
 Finding the worker computation time for polynomial code approach.
 Having a random matrices A and B
 We have n workers, s stragglers.
-Storage fraction gamma = 1/k ; where k = n - s; and set Delta = k.
-Matrix A is divided into k block columns.
+Storage fraction gammaA = 1/kA and gammaB = 1/kB ; where k = kA kB = n - s.
+Matrice A and B are partitioned into kA and kB block columns.
 We choose n nodes uniformly spaced in [-1,1], instead of the integers.
 One can find MSE at different SNR
 
@@ -11,7 +11,8 @@ This code uses the approach of the following paper-
 
 Qian Yu, Mohammad Maddah-Ali, and Salman Avestimehr. Polynomial codes: an 
 optimal design for highdimensional coded matrix multiplication. In Proc. of 
-Advances in Neural Information Processing Systems (NIPS), pages 4403–4413, 2017
+Advances in Neural Information Processing Systems (NIPS), pages 4403–4413, 
+2017.
 """
 
 from __future__ import division
