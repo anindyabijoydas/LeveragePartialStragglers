@@ -45,12 +45,12 @@ if rank == 0:
 
     sub_ellA = int(r/DeltaA);
     As = {};
-    for j in range(0,n):
+    for j in range(0,DeltaA):
         As[j] = A[j*sub_ellA:(j+1)*sub_ellA,:];
 
     sub_ellB = int(w/DeltaB);
     Bs = {};
-    for j in range(0,n):
+    for j in range(0,DeltaB):
         Bs[j] = B[j*sub_ellB:(j+1)*sub_ellB,:];
     
     CMA = np.zeros((n,ellA,betaA))
