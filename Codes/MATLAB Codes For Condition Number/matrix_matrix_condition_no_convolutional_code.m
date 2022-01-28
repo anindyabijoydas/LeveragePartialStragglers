@@ -12,12 +12,14 @@
 %   worst_condition_number is the maximum condition number in this scheme.
 %   Set dist = 'rand' if you want the coefficients from standard normal distribution.
 %   One can increase no_trials, which can help to find a better condition number.   
-
-
+%
+%
 %   This code uses the approach of the following paper-
 %
 %   Anindya Bijoy Das, Aditya Ramamoorthy, and Namrata Vaswani, "Efficient and Robust 
-%   Distributed Matrix Computations via Convolutional Coding," arXiv:1907.08064 (2019).
+%   Distributed Matrix Computations via Convolutional Coding," in IEEE Transactions on 
+%   Information Theory, vol. 67, no. 9, pp. 6266-6282, 2021, doi: 10.1109/TIT.2021.3095909.
+
 
 clc
 close all
